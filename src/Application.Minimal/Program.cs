@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Application.Domain;
-using Application.Repositories;
-using Application.Minimal.Models;
+using Application.Minimal;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddTransient<ValidationInteractor>();
-builder.Services.AddTransient<IGetMaximumQuery, GetMaximumQuery>();
+builder.Services
+    .AddDomainLogic()
+    .AddRepositories();
 
 await using var app = builder.Build();
 
@@ -25,7 +25,7 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapGet("/validate/{val}", async httpContext =>
     {
-        var (ok, model) = RequestParsing.ParseValidationModel(httpContext.Request);
+        var (ok, model) = Models.ParseValidationModel(httpContext.Request);
         if (!ok)
         {
             httpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;

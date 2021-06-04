@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Http;
 
-namespace Application.Minimal.Models
+namespace Application.Minimal
 {
-    public class RequestParsing
+    public static class Models 
     {
         public static (bool, int) ParseValidationModel(HttpRequest request)
         {
