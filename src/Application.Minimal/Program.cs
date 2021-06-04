@@ -1,5 +1,6 @@
 using System;
 using System.Net;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,6 +10,7 @@ using Application.Minimal;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services
+    .AddEndpoints()
     .AddDomainLogic()
     .AddRepositories();
 
@@ -24,20 +26,7 @@ app.UseRouting();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapGet("/validate/{val}", async httpContext =>
-    {
-        var (ok, model) = Models.ParseValidationModel(httpContext.Request);
-        if (!ok)
-        {
-            httpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-            await httpContext.Response.WriteAsync("Invalid Request");
-            return;
-        }
-
-        var result = await endpoints.ServiceProvider.GetRequiredService<ValidationInteractor>().Execute(model);
-
-        httpContext.Response.StatusCode = (int)HttpStatusCode.OK;
-        await httpContext.Response.WriteAsync(result.ToString());
-    });
+        endpoints.ServiceProvider.GetRequiredService<ValidationEndpoint>().Execute(httpContext));
 });
 
 await app.RunAsync();

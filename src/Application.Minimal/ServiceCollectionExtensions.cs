@@ -7,6 +7,12 @@ namespace Application.Minimal
 {
     public static class ServiceCollectionExtensions
     {
+        public static IServiceCollection AddEndpoints(this IServiceCollection services)
+        {
+            services.AddTransient<ValidationEndpoint>();
+            return services;
+        }
+
         public static IServiceCollection AddDomainLogic(this IServiceCollection services)
         {
             services.AddTransient<ValidationInteractor>();

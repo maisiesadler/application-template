@@ -13,4 +13,5 @@ namespace Application.Minimal
             return (false, -1);
         }
     }
+
 }
