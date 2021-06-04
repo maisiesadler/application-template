@@ -1,13 +1,12 @@
-using System;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Application.Domain;
 
-namespace Application.Minimal
+namespace Application.Minimal.Endpoints
 {
-    public class ValidationEndpoint
+    public class ValidationEndpoint : IEndpoint
     {
         private readonly ValidationInteractor _validationInteractor;
 

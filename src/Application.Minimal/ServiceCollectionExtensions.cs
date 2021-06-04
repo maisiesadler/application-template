@@ -1,4 +1,5 @@
 using Application.Domain;
+using Application.Minimal.Endpoints;
 using Application.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
