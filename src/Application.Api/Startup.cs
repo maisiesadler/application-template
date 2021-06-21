@@ -1,3 +1,6 @@
+using Application.Domain;
+using Application.Metrics;
+using Application.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -24,6 +27,13 @@ namespace Application.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Application.Api", Version = "v1" });
             });
+
+            services.AddTransient<ValidationInteractor>();
+            services.AddTransient<IGetMaximumQuery, GetMaximumQuery>();
+
+            services.AddScoped<ITrace, TraceBuilder>();
+            services.AddScoped<Trace>();
+            services.AddScoped<ISendMetricsCommand, SendMetricsCommand>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,11 +46,11 @@ namespace Application.Api
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Application.Api v1"));
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseMiddleware<MetricsMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
