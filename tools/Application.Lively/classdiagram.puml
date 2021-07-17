@@ -1,19 +1,27 @@
 @startuml
 
 class ValidationController
-ValidationController ---> ValidationInteractor
-ValidationController ---> ITrace
+ValidationController ---> Application.Domain.ValidationInteractor
+ValidationController ---> Application.Metrics.ITrace
 class ValidationInteractor
-ValidationInteractor ---> "2" IGetMaximumQuery
+ValidationInteractor ---> "2" Application.Domain.IGetMaximumQuery
 class ITrace
-ITrace ---> Trace
+ITrace ---> Application.Metrics.Trace
 
 interface IGetMaximumQuery {
   GetMaximumQuery
 }
+class GetMaximumQuery
+  +Execute()
+}
+GetMaximumQuery ---> IGetMaximumQuery
 interface ITrace {
   TraceBuilder
 }
+class TraceBuilder
+  +Add()
+}
+TraceBuilder ---> ITrace
 
 @enduml
 
