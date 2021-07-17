@@ -1,24 +1,30 @@
 @startuml
 
-class ValidationController
+class ValidationController {
+  +Get()
+}
 ValidationController ---> Application.Domain.ValidationInteractor
 ValidationController ---> Application.Metrics.ITrace
-class ValidationInteractor
+class ValidationInteractor {
+  +Execute()
+}
 ValidationInteractor ---> "2" Application.Domain.IGetMaximumQuery
-class ITrace
+class ITrace {
+  +Add()
+}
 ITrace ---> Application.Metrics.Trace
 
 interface IGetMaximumQuery {
   GetMaximumQuery
 }
-class GetMaximumQuery
+class GetMaximumQuery {
   +Execute()
 }
 GetMaximumQuery ---> IGetMaximumQuery
 interface ITrace {
   TraceBuilder
 }
-class TraceBuilder
+class TraceBuilder {
   +Add()
 }
 TraceBuilder ---> ITrace
