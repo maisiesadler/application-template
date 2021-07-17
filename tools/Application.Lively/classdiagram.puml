@@ -1,33 +1,33 @@
 @startuml
 
-class ValidationController {
+class Application.Api.Controllers.ValidationController {
   +Get()
 }
-ValidationController ---> Application.Domain.ValidationInteractor
-ValidationController ---> Application.Metrics.ITrace
-class ValidationInteractor {
+Application.Api.Controllers.ValidationController ---> Application.Domain.ValidationInteractor
+Application.Api.Controllers.ValidationController ---> Application.Metrics.ITrace
+class Application.Domain.ValidationInteractor {
   +Execute()
 }
-ValidationInteractor ---> "2" Application.Domain.IGetMaximumQuery
-class ITrace {
+Application.Domain.ValidationInteractor ---> "2" Application.Domain.IGetMaximumQuery
+class Application.Metrics.ITrace {
   +Add()
 }
-ITrace ---> Application.Metrics.Trace
+Application.Metrics.ITrace ---> Application.Metrics.Trace
 
-interface IGetMaximumQuery {
+interface Application.Domain.IGetMaximumQuery {
   GetMaximumQuery
 }
-class GetMaximumQuery {
+class Application.Adapters.GetMaximumQuery {
   +Execute()
 }
-GetMaximumQuery ---> IGetMaximumQuery
-interface ITrace {
+Application.Adapters.GetMaximumQuery ---> Application.Domain.IGetMaximumQuery
+interface Application.Metrics.ITrace {
   TraceBuilder
 }
-class TraceBuilder {
+class Application.Metrics.TraceBuilder {
   +Add()
 }
-TraceBuilder ---> ITrace
+Application.Metrics.TraceBuilder ---> Application.Metrics.ITrace
 
 @enduml
 
