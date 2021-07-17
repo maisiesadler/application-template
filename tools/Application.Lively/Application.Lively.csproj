@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- <PackageReference Include="Lively.Diagrams" Version="1.0.12" /> -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Application.Api\Application.Api.csproj" />
+    <ProjectReference Include="..\..\..\deptree\src\Lively.Diagrams\Lively.Diagrams.csproj" />
+  </ItemGroup>
+
+</Project>

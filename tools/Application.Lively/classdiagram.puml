@@ -1,0 +1,19 @@
+@startuml
+
+class ValidationController
+ValidationController ---> ValidationInteractor
+ValidationController ---> ITrace
+class ValidationInteractor
+ValidationInteractor ---> "2" IGetMaximumQuery
+class ITrace
+ITrace ---> Trace
+
+interface IGetMaximumQuery {
+  GetMaximumQuery
+}
+interface ITrace {
+  TraceBuilder
+}
+
+@enduml
+
