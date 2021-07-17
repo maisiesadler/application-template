@@ -1,6 +1,6 @@
 using Application.Domain;
 using Application.Metrics;
-using Application.Repositories;
+using Application.Adapters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

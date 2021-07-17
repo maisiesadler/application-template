@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Api", "src\Appl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Domain", "src\Application.Domain\Application.Domain.csproj", "{F9FFD456-5846-4A95-A0EC-BB67752499FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Repositories", "src\Application.Repositories\Application.Repositories.csproj", "{18A704F5-7360-49AC-9A1E-A34B97DC733B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Adapters", "src\Application.Adapters\Application.Adapters.csproj", "{18A704F5-7360-49AC-9A1E-A34B97DC733B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

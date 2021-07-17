@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Application.Domain;
 
-namespace Application.Repositories
+namespace Application.Adapters
 {
     public class GetMaximumQuery : IGetMaximumQuery
     {
